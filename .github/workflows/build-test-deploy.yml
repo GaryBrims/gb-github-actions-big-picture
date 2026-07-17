@@ -1,12 +1,9 @@
 name: build-test-deploy
-
 on: push
-
-jobs:
+jobs: 
   build:
     runs-on: ubuntu-latest
-
-    steps:
+    steps: 
       - name: checkout repo
         uses: actions/checkout@v4
       - name: use node.js
@@ -15,12 +12,11 @@ jobs:
           node-version: '20.x'
       - run: npm install
       - run: npm run build
-      
+
   test:
     needs: build
     runs-on: ubuntu-latest
-
-    steps:
+    steps: 
       - name: checkout repo
         uses: actions/checkout@v4
       - name: use node.js
@@ -30,7 +26,7 @@ jobs:
       - run: npm install
       - run: npm test
 
- deploy:
+  deploy:
     needs: test
 
     permissions:
@@ -66,5 +62,4 @@ jobs:
       - name: deploy
         id: deployment
         uses: actions/deploy-pages@v4
-      
-      
+        
